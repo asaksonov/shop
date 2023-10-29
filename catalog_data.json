@@ -1,0 +1,68 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "телефон",
+      "description": "mobile phones"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "наушники",
+      "description": "различные наушники"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "ноутбуки",
+      "description": "различные ноутбуки"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "created_at": "2023-10-28T06:08:08Z",
+      "updated_at": "2023-10-28T06:10:19.649Z",
+      "name": "Iphone 15 Pro Max",
+      "description": "New IPhone Titanium",
+      "preview": "catalog/Iphone.jpeg",
+      "category": 1,
+      "price": 150000,
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "created_at": "2023-10-28T06:10:44Z",
+      "updated_at": "2023-10-28T06:11:51.792Z",
+      "name": "AirPods Pro2",
+      "description": "New AirPods Pro2 with USB-c",
+      "preview": "catalog/airpods.jpeg",
+      "category": 2,
+      "price": 25000,
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "created_at": "2023-10-28T06:11:54Z",
+      "updated_at": "2023-10-28T06:12:59.733Z",
+      "name": "MacBook Air 15",
+      "description": "New Macbook Air 15",
+      "preview": "catalog/macbook.jpeg",
+      "category": 3,
+      "price": 165000,
+      "is_active": true
+    }
+  }
+]

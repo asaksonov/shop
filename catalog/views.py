@@ -1,22 +1,59 @@
-from django.shortcuts import render
-from django.contrib import messages
+import datetime
 
+from django.contrib import messages
+from django.shortcuts import render
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, TemplateView
+
+from .models import Product
 from .services import messages_saver
 
 
 # Create your views here.
 
+class ProductListView(ListView):
+    model = Product
+    paginate_by = 5
 
-def index(request):
-    """Функция отображения главной страницы"""
-    return render(request, "catalog/index.html", {'nbar': 'home'})
+    extra_context = {
+        'title': 'SkyStore - Главная',
+        'nbar': 'home',
+    }
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_active=True)
+
+        return queryset
 
 
-def contacts(request):
-    """Функция отображения страницы контактов"""
-    if request.method == "POST":
+class ProductDetailView(DetailView):
+    model = Product
 
-        messages_saver.save_message(request.POST)
-        messages.info(request, 'Ваше сообщение принято и будет обработано')
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
 
-    return render(request, "catalog/contacts.html", {'nbar': 'contacts'})
+        product = Product.objects.get(pk=self.kwargs.get('pk'))
+        is_new = timezone.now() - product.created_at <= datetime.timedelta(days=7)
+
+        recommended = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:3]
+
+        context_data['recommended'] = recommended
+        context_data['is_new'] = is_new
+        context_data['title'] = product.name
+
+        return context_data
+
+
+class ContactsTemplateView(TemplateView):
+    template_name = 'catalog/contacts.html'
+
+    extra_context = {
+        'nbar': 'contacts',
+        'title': 'Контакты',
+    }
+
+    def post(self, *args):
+        messages_saver.save_message(self.request.POST)
+        messages.info(self.request, 'Ваше сообщение принято и будет обработано')
+        return self.get(self.request)
