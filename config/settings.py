@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
 
     "catalog",
-
+    "blog",
+    "backoffice"
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+

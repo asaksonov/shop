@@ -6,9 +6,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{{ title }}</title>
 </head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -108,28 +107,7 @@
                 <h5 class="offcanvas-title" id="#offcanvasLabel">Aperture</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav flex-grow-1 justify-content-between">
-                    <li class="nav-item"><a class="nav-link" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <use xlink:href="#aperture"></use>
-                        </svg>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link {% if nbar == 'home' %}active{% endif %}"
-                                            href="{% url 'catalog:index' %}">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Каталог</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">О нас</a></li>
-                    {#                    <li class="nav-item"><a class="nav-link" href="#">Enterprise</a></li>#}
-                    <li class="nav-item"><a class="nav-link" href="#">Поддержка</a></li>
-                    <li class="nav-item"><a class="nav-link {% if nbar == 'contacts' %}active{% endif %}"
-                                            href="{% url 'catalog:contacts' %}">Контакты</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
-                        <svg class="bi" width="24" height="24">
-                            <use xlink:href="#cart"></use>
-                        </svg>
-                    </a></li>
-                </ul>
-            </div>
+            {% include 'catalog/includes/inc_main_menu.html' %}
         </div>
     </div>
 </nav>
